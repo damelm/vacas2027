@@ -62,6 +62,35 @@ aporte de **hoy** pendiente a propósito, para ver la alerta de "ponerse al día
 
 > ⚠️ `npm run seed` **borra** los aportes existentes antes de sembrar.
 
+## 🌐 Publicar en GitHub Pages (sin servidor)
+
+GitHub Pages solo sirve archivos estáticos, así que **no puede correr el backend**.
+Para eso, la app tiene un **modo estático** que guarda los datos en el navegador
+(`localStorage`) en vez de en el servidor. Funciona 100% en Pages, gratis.
+
+> 📱 Los datos quedan guardados **en ese dispositivo/navegador**. Ideal para uso
+> personal desde el celular. Si la abrís en otro dispositivo, tendrá su propio
+> historial (no se sincronizan).
+
+### Activar Pages (una sola vez)
+
+1. Andá a **Settings → Pages** en el repo de GitHub.
+2. En **Source**, elegí **"GitHub Actions"**.
+
+Con eso, cada push a `main` dispara el workflow `.github/workflows/deploy-pages.yml`,
+que hace el build estático y lo publica. La URL queda en:
+
+```
+https://<tu-usuario>.github.io/<nombre-del-repo>/
+```
+
+Para probar el build estático localmente:
+
+```bash
+npm run build --prefix client -- --base=/  # o: cd client && npm run build:pages
+npm run preview --prefix client
+```
+
 ## 📡 API REST
 
 Base: `http://localhost:3001/api`

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:pages": "VITE_STORAGE=local vite build --base=/vacas2027/",
     "preview": "vite preview"
   },
   "dependencies": {

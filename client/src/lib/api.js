@@ -1,3 +1,5 @@
+import { localApi } from './localApi.js';
+
 const BASE = '/api';
 
 async function req(path, options = {}) {
@@ -17,7 +19,8 @@ async function req(path, options = {}) {
   return data;
 }
 
-export const api = {
+// API contra el backend Express (modo desarrollo / servidor propio).
+const httpApi = {
   getResumen: () => req('/resumen'),
   getAportes: () => req('/aportes'),
   crearAporte: (body) => req('/aportes', { method: 'POST', body: JSON.stringify(body) }),
@@ -26,3 +29,9 @@ export const api = {
   getConfig: () => req('/config'),
   guardarConfig: (body) => req('/config', { method: 'PUT', body: JSON.stringify(body) })
 };
+
+// En el build estático (GitHub Pages) no hay servidor: se usa localStorage.
+const useLocal = import.meta.env.VITE_STORAGE === 'local';
+
+export const api = useLocal ? localApi : httpApi;
+export const modoLocal = useLocal;
