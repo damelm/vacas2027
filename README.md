@@ -91,6 +91,18 @@ npm run build --prefix client -- --base=/  # o: cd client && npm run build:pages
 npm run preview --prefix client
 ```
 
+## 📲 Instalar como app (PWA)
+
+La app es una **PWA**: se puede instalar en el celular y usar **offline** (los
+datos viven en el navegador). Una vez abierta en `https://<usuario>.github.io/<repo>/`:
+
+- **Android (Chrome):** menú ⋮ → **"Instalar app"** / "Agregar a pantalla de inicio".
+- **iPhone (Safari):** botón **Compartir** → **"Agregar a pantalla de inicio"**.
+
+Queda con ícono propio, a pantalla completa (sin barra del navegador) y abre
+aunque no haya conexión. El service worker (`public/sw.js`) solo se registra en
+el build de producción, no en desarrollo.
+
 ## 📡 API REST
 
 Base: `http://localhost:3001/api`
