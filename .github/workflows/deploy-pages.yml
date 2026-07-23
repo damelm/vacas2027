@@ -13,13 +13,17 @@ permissions:
   pages: write
   id-token: write
 
+# Grupo por rama: un push a otra rama NO cancela el deploy en curso.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Solo la rama por defecto puede desplegar en Pages (a prueba de renombrados).
+    # Las demás ramas se saltan el job (queda "skipped", sin cruz roja).
+    if: github.ref_name == github.event.repository.default_branch
     steps:
       - uses: actions/checkout@v4
 
