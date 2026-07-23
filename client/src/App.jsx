@@ -109,21 +109,15 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-lg px-4 pb-16 pt-8 space-y-5">
-        <header className="flex items-center justify-between">
-          <span className="font-display font-600 text-sm text-ocean-100/80 tracking-wide">
-            🌴 Vacas 2027
-          </span>
-          <button
-            onClick={() => setConfigAbierta(true)}
-            className="rounded-full bg-white/10 hover:bg-white/15 border border-white/10 px-3 py-1.5 text-sm text-white transition"
-          >
-            ⚙️ Ajustes
-          </button>
-        </header>
+      {/* Hero a pantalla completa con foto real */}
+      <Countdown
+        fechaSalida={resumen.fecha_salida}
+        destino={config?.destino}
+        onAjustes={() => setConfigAbierta(true)}
+      />
 
-        <Countdown fechaSalida={resumen.fecha_salida} destino={config?.destino} />
-
+      {/* Contenido, montado sobre el degradado del hero */}
+      <div className="relative z-10 mx-auto max-w-lg px-4 pb-16 -mt-6 space-y-5">
         <ProgressBar resumen={resumen} />
 
         <AporteButton
@@ -146,8 +140,28 @@ export default function App() {
 
         <HistoryTable aportes={aportes} onEditar={editarAporte} onBorrar={borrarAporte} />
 
-        <footer className="pt-4 text-center text-xs text-ocean-100/50">
-          Asunción → Guaratuba · {config?.personas || 3} viajeros · hecho con 🧡 y guaraníes
+        {/* Postal motivacional de atardecer */}
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 shadow-card">
+          <img
+            src={`${import.meta.env.BASE_URL}img/sunset.jpg`}
+            alt="Atardecer en la playa"
+            className="h-44 w-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/25 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-4">
+            <p className="font-display font-700 text-white text-xl leading-tight
+                          [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]">
+              Cada aporte te acerca al mar
+            </p>
+            <p className="text-white/85 text-xs mt-1 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+              Guaratuba te espera · {config?.personas || 3} viajeros · 🇵🇾 → 🇧🇷
+            </p>
+          </div>
+        </section>
+
+        <footer className="pt-2 text-center text-xs text-ocean-100/50">
+          Asunción → Guaratuba · hecho con 🧡 y guaraníes
         </footer>
       </div>
 

@@ -161,6 +161,11 @@ vacas2027/
 | `npm run build`       | Build de producción del frontend                  |
 | `npm start`           | Corre solo el backend                             |
 
+## 🖼️ Créditos de las fotos
+
+Las imágenes de `client/public/img/` (playa, mar y atardecer) son de
+[Unsplash](https://unsplash.com), de uso libre bajo su licencia.
+
 ---
 
 Hecho con 🧡 y guaraníes. ¡Nos vemos en la playa! 🌊
